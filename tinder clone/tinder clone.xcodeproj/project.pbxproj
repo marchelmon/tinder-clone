@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C5A88C825CD7E68002A8AC5 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A88C725CD7E68002A8AC5 /* CustomTextField.swift */; };
 		3C6D591A25CBEBAF00CA7CCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D591925CBEBAF00CA7CCA /* AppDelegate.swift */; };
 		3C6D591C25CBEBAF00CA7CCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D591B25CBEBAF00CA7CCA /* SceneDelegate.swift */; };
 		3C6D592125CBEBAF00CA7CCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6D591F25CBEBAF00CA7CCA /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C5A88C725CD7E68002A8AC5 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3C6D591625CBEBAF00CA7CCA /* tinder clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tinder clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6D591925CBEBAF00CA7CCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C6D591B25CBEBAF00CA7CCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				3C6D593925CBEFF700CA7CCA /* Extensions.swift */,
+				3C5A88C725CD7E68002A8AC5 /* CustomTextField.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				3C6D593D25CBF06400CA7CCA /* HomeNavigationStackView.swift in Sources */,
 				3C6D595125CD60CB00CA7CCA /* RegistrationController.swift in Sources */,
 				3C6D593725CBECC200CA7CCA /* HomeController.swift in Sources */,
+				3C5A88C825CD7E68002A8AC5 /* CustomTextField.swift in Sources */,
 				3C6D593A25CBEFF700CA7CCA /* Extensions.swift in Sources */,
 				3C6D594925CC615000CA7CCA /* CardViewModel.swift in Sources */,
 				3C6D594D25CD60BB00CA7CCA /* LoginController.swift in Sources */,
