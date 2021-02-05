@@ -10,13 +10,13 @@ import UIKit
 struct CardViewModel {
 
     let user: User
-    
     let userInfoText: NSAttributedString
-    
     private var imageIndex = 0
+    var imageToShow: UIImage?
     
     init(user: User) {
         self.user = user
+        imageToShow = user.images.first ?? #imageLiteral(resourceName: "ic_person_outline_white_2x")
         
         let attributedText = NSMutableAttributedString(
             string: user.name,
@@ -38,12 +38,16 @@ struct CardViewModel {
         self.userInfoText = attributedText
     }
     
-    func showNextPhoto() {
-        
+    mutating func showNextPhoto() {
+        guard imageIndex + 1 != user.images.count else { return }
+        imageIndex += 1
+        self.imageToShow = user.images[imageIndex]
     }
     
-    func showPreviousPhoto() {
-        
+    mutating func showPreviousPhoto() {
+        guard imageIndex != 0 else { return }
+        imageIndex -= 1
+        self.imageToShow = user.images[imageIndex]
     }
     
 }

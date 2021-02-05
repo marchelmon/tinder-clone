@@ -19,6 +19,8 @@
 		3C6D594325CC01A200CA7CCA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D594225CC01A200CA7CCA /* CardView.swift */; };
 		3C6D594625CC602100CA7CCA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D594525CC602100CA7CCA /* User.swift */; };
 		3C6D594925CC615000CA7CCA /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D594825CC615000CA7CCA /* CardViewModel.swift */; };
+		3C6D594D25CD60BB00CA7CCA /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D594C25CD60BB00CA7CCA /* LoginController.swift */; };
+		3C6D595125CD60CB00CA7CCA /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D595025CD60CB00CA7CCA /* RegistrationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		3C6D594225CC01A200CA7CCA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		3C6D594525CC602100CA7CCA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3C6D594825CC615000CA7CCA /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		3C6D594C25CD60BB00CA7CCA /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		3C6D595025CD60CB00CA7CCA /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,7 @@
 		3C6D592F25CBEBD400CA7CCA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3C6D594B25CD60A400CA7CCA /* Authentication */,
 				3C6D593625CBECC200CA7CCA /* HomeController.swift */,
 			);
 			path = Controller;
@@ -131,6 +136,15 @@
 				3C6D593925CBEFF700CA7CCA /* Extensions.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		3C6D594B25CD60A400CA7CCA /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				3C6D594C25CD60BB00CA7CCA /* LoginController.swift */,
+				3C6D595025CD60CB00CA7CCA /* RegistrationController.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,9 +223,11 @@
 				3C6D591C25CBEBAF00CA7CCA /* SceneDelegate.swift in Sources */,
 				3C6D594625CC602100CA7CCA /* User.swift in Sources */,
 				3C6D593D25CBF06400CA7CCA /* HomeNavigationStackView.swift in Sources */,
+				3C6D595125CD60CB00CA7CCA /* RegistrationController.swift in Sources */,
 				3C6D593725CBECC200CA7CCA /* HomeController.swift in Sources */,
 				3C6D593A25CBEFF700CA7CCA /* Extensions.swift in Sources */,
 				3C6D594925CC615000CA7CCA /* CardViewModel.swift in Sources */,
+				3C6D594D25CD60BB00CA7CCA /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

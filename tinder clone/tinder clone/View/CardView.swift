@@ -19,7 +19,7 @@ class CardView: UIView {
 
     private let gradientLayer = CAGradientLayer()
     
-    private let viewModel: CardViewModel
+    private var viewModel: CardViewModel
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
@@ -93,8 +93,12 @@ class CardView: UIView {
         let location = sender.location(in: nil).x
         let shouldShowNextPhoto = location > self.frame.width / 2
         
-        print("DEBUG: Location is \(location)")
-        print("DEBUG: Should show next photo is \(shouldShowNextPhoto)")
+        if shouldShowNextPhoto {
+            viewModel.showNextPhoto()
+        } else {
+            viewModel.showPreviousPhoto()
+        }
+        imageView.image = viewModel.imageToShow
     }
     
     //MARK: - Helpers
