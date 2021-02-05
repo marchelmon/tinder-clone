@@ -16,6 +16,9 @@
 		3C6D593A25CBEFF700CA7CCA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D593925CBEFF700CA7CCA /* Extensions.swift */; };
 		3C6D593D25CBF06400CA7CCA /* HomeNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D593C25CBF06400CA7CCA /* HomeNavigationStackView.swift */; };
 		3C6D594025CBF96B00CA7CCA /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D593F25CBF96B00CA7CCA /* BottomControlsStackView.swift */; };
+		3C6D594325CC01A200CA7CCA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D594225CC01A200CA7CCA /* CardView.swift */; };
+		3C6D594625CC602100CA7CCA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D594525CC602100CA7CCA /* User.swift */; };
+		3C6D594925CC615000CA7CCA /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D594825CC615000CA7CCA /* CardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		3C6D593925CBEFF700CA7CCA /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3C6D593C25CBF06400CA7CCA /* HomeNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationStackView.swift; sourceTree = "<group>"; };
 		3C6D593F25CBF96B00CA7CCA /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
+		3C6D594225CC01A200CA7CCA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		3C6D594525CC602100CA7CCA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3C6D594825CC615000CA7CCA /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,7 @@
 		3C6D593025CBEBD700CA7CCA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				3C6D594825CC615000CA7CCA /* CardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -105,6 +112,7 @@
 			children = (
 				3C6D593C25CBF06400CA7CCA /* HomeNavigationStackView.swift */,
 				3C6D593F25CBF96B00CA7CCA /* BottomControlsStackView.swift */,
+				3C6D594225CC01A200CA7CCA /* CardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -112,6 +120,7 @@
 		3C6D593225CBEBDE00CA7CCA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3C6D594525CC602100CA7CCA /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -194,12 +203,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C6D594325CC01A200CA7CCA /* CardView.swift in Sources */,
 				3C6D594025CBF96B00CA7CCA /* BottomControlsStackView.swift in Sources */,
 				3C6D591A25CBEBAF00CA7CCA /* AppDelegate.swift in Sources */,
 				3C6D591C25CBEBAF00CA7CCA /* SceneDelegate.swift in Sources */,
+				3C6D594625CC602100CA7CCA /* User.swift in Sources */,
 				3C6D593D25CBF06400CA7CCA /* HomeNavigationStackView.swift in Sources */,
 				3C6D593725CBECC200CA7CCA /* HomeController.swift in Sources */,
 				3C6D593A25CBEFF700CA7CCA /* Extensions.swift in Sources */,
+				3C6D594925CC615000CA7CCA /* CardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

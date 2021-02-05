@@ -27,6 +27,7 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        configureCards()
     }
     
     //MARK: - Helper functions
@@ -44,6 +45,22 @@ class HomeController: UIViewController {
         stack.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
         
         stack.bringSubviewToFront(deckView)
+    }
+    
+    func configureCards() {
+        
+        let user1 = User(name: "Jane Doe", age: 20, images: [#imageLiteral(resourceName: "lady5c"), #imageLiteral(resourceName: "kelly1")])
+        let user2 = User(name: "Janey Doey ", age: 25, images: [#imageLiteral(resourceName: "jane2"), #imageLiteral(resourceName: "jane1")])
+        
+        let cardView1 = CardView(viewModel: CardViewModel(user: user1))
+        let cardView2 = CardView(viewModel: CardViewModel(user: user2))
+        
+        
+        deckView.addSubview(cardView1)
+        deckView.addSubview(cardView2)
+        
+        cardView1.fillSuperview()
+        cardView2.fillSuperview()
     }
     
 }
