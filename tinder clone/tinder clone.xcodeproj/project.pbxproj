@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C5A88C825CD7E68002A8AC5 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A88C725CD7E68002A8AC5 /* CustomTextField.swift */; };
+		3C5A88CB25CD8446002A8AC5 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A88CA25CD8446002A8AC5 /* AuthButton.swift */; };
 		3C6D591A25CBEBAF00CA7CCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D591925CBEBAF00CA7CCA /* AppDelegate.swift */; };
 		3C6D591C25CBEBAF00CA7CCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D591B25CBEBAF00CA7CCA /* SceneDelegate.swift */; };
 		3C6D592125CBEBAF00CA7CCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6D591F25CBEBAF00CA7CCA /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		3C5A88C725CD7E68002A8AC5 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		3C5A88CA25CD8446002A8AC5 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		3C6D591625CBEBAF00CA7CCA /* tinder clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tinder clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6D591925CBEBAF00CA7CCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C6D591B25CBEBAF00CA7CCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				3C6D593925CBEFF700CA7CCA /* Extensions.swift */,
 				3C5A88C725CD7E68002A8AC5 /* CustomTextField.swift */,
+				3C5A88CA25CD8446002A8AC5 /* AuthButton.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C6D594325CC01A200CA7CCA /* CardView.swift in Sources */,
+				3C5A88CB25CD8446002A8AC5 /* AuthButton.swift in Sources */,
 				3C6D594025CBF96B00CA7CCA /* BottomControlsStackView.swift in Sources */,
 				3C6D591A25CBEBAF00CA7CCA /* AppDelegate.swift in Sources */,
 				3C6D591C25CBEBAF00CA7CCA /* SceneDelegate.swift in Sources */,
