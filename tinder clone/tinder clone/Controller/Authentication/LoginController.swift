@@ -62,7 +62,7 @@ class LoginController: UIViewController {
     }
     
     @objc func handleShowRegistration() {
-        
+        navigationController?.pushViewController(RegistrationController(), animated: true)
     }
     
     //MARK: - Helpers
@@ -71,8 +71,8 @@ class LoginController: UIViewController {
         
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.barStyle = .black
-        setupGradientLayer()
-        
+        configureGradientLayer()
+
         view.addSubview(iconImageView)
         iconImageView.centerX(inView: view)
         iconImageView.setDimensions(height: 100, width: 100)
@@ -81,24 +81,22 @@ class LoginController: UIViewController {
         let stack = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, authButton])
         stack.axis = .vertical
         stack.spacing = 16
-        
         view.addSubview(stack)
-        stack.anchor(top: iconImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 24, paddingLeft: 32, paddingRight: 32)
+        stack.anchor(
+            top: iconImageView.bottomAnchor,
+            left: view.leftAnchor,
+            right: view.rightAnchor,
+            paddingTop: 24, paddingLeft: 32, paddingRight: 32
+        )
         
         view.addSubview(goToRegistrationButton)
-        goToRegistrationButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 32, paddingRight: 32)
+        goToRegistrationButton.anchor(
+            left: view.leftAnchor,
+            bottom: view.safeAreaLayoutGuide.bottomAnchor,
+            right: view.rightAnchor,
+            paddingLeft: 32, paddingRight: 32
+        )
         
-    }
-    
-    func setupGradientLayer() {
-        let topColor = #colorLiteral(red: 0.9372549057, green: 0.2617453173, blue: 0.3710942782, alpha: 1)
-        let bottomColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-    
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
-        gradientLayer.locations = [0, 1]
-        view.layer.addSublayer(gradientLayer)
-        gradientLayer.frame = view.frame
     }
     
 }
