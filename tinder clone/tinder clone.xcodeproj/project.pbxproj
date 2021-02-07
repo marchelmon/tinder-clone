@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,8 @@
 		3C5A88CE25CEC385002A8AC5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A88CD25CEC385002A8AC5 /* LoginViewModel.swift */; };
 		3C5A88D125CEC39B002A8AC5 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A88D025CEC39B002A8AC5 /* RegistrationViewModel.swift */; };
 		3C5A88D425CFD5B9002A8AC5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C5A88D325CFD5B9002A8AC5 /* GoogleService-Info.plist */; };
+		3C5A88F025CFDB53002A8AC5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A88EF25CFDB53002A8AC5 /* AuthService.swift */; };
+		3C5A88F325CFDB5D002A8AC5 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A88F225CFDB5D002A8AC5 /* Service.swift */; };
 		3C6D591A25CBEBAF00CA7CCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D591925CBEBAF00CA7CCA /* AppDelegate.swift */; };
 		3C6D591C25CBEBAF00CA7CCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D591B25CBEBAF00CA7CCA /* SceneDelegate.swift */; };
 		3C6D592125CBEBAF00CA7CCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6D591F25CBEBAF00CA7CCA /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 		3C5A88CD25CEC385002A8AC5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		3C5A88D025CEC39B002A8AC5 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		3C5A88D325CFD5B9002A8AC5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3C5A88EF25CFDB53002A8AC5 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		3C5A88F225CFDB5D002A8AC5 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		3C6D591625CBEBAF00CA7CCA /* tinder clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tinder clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6D591925CBEBAF00CA7CCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C6D591B25CBEBAF00CA7CCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 		3C6D592E25CBEBCE00CA7CCA /* API */ = {
 			isa = PBXGroup;
 			children = (
+				3C5A88EF25CFDB53002A8AC5 /* AuthService.swift */,
+				3C5A88F225CFDB5D002A8AC5 /* Service.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -183,7 +189,6 @@
 				759939650EEE936D932DE32E /* Pods-tinder clone.debug.xcconfig */,
 				79427A44BF150D607B3FF8FD /* Pods-tinder clone.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -313,10 +318,12 @@
 				3C6D595125CD60CB00CA7CCA /* RegistrationController.swift in Sources */,
 				3C6D593725CBECC200CA7CCA /* HomeController.swift in Sources */,
 				3C5A88D125CEC39B002A8AC5 /* RegistrationViewModel.swift in Sources */,
+				3C5A88F325CFDB5D002A8AC5 /* Service.swift in Sources */,
 				3C5A88C825CD7E68002A8AC5 /* CustomTextField.swift in Sources */,
 				3C6D593A25CBEFF700CA7CCA /* Extensions.swift in Sources */,
 				3C6D594925CC615000CA7CCA /* CardViewModel.swift in Sources */,
 				3C6D594D25CD60BB00CA7CCA /* LoginController.swift in Sources */,
+				3C5A88F025CFDB53002A8AC5 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

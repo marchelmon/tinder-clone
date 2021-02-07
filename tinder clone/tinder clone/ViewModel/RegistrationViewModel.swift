@@ -10,9 +10,9 @@ import Foundation
 struct RegistrationViewModel {
     var email: String?
     var password: String?
-    var fullName: String?
+    var fullname: String?
     
     var formIsValid: Bool {
-        return email?.isEmpty == false && password?.isEmpty == false && fullName?.isEmpty == false
+        return email?.isEmpty == false && password?.isEmpty == false && fullname?.isEmpty == false
     }
 }

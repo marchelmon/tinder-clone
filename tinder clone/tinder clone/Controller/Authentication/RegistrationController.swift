@@ -23,9 +23,11 @@ class RegistrationController: UIViewController {
     }()
     
     private let emailTextField = CustomTextField(placeholder: "Email")
-    private let fullNameTextField = CustomTextField(placeholder: "Full Name")
-    private let passwordTextField = CustomTextField(placeholder: "Password", secureText: true)
+    private let fullnameTextField = CustomTextField(placeholder: "Full Name")
+    private let passwordTextField = CustomTextField(placeholder: "Password")
 
+    private var profileImage: UIImage?
+    
     private let authButton: AuthButton = {
         let button = AuthButton(title: "Register ", type: .system)
         button.addTarget(self, action: #selector(handleRegisterUser), for: .touchUpInside)
@@ -67,8 +69,8 @@ class RegistrationController: UIViewController {
             viewModel.email = sender.text
         } else if sender == passwordTextField {
             viewModel.password = sender.text
-        } else if sender == fullNameTextField {
-            viewModel.fullName = sender.text
+        } else if sender == fullnameTextField {
+            viewModel.fullname = sender.text
         }
             
         checkFormStatus()
@@ -81,7 +83,21 @@ class RegistrationController: UIViewController {
     }
         
     @objc func handleRegisterUser() {
-        print("DEBUG: Handle register ")
+        guard let email = emailTextField.text else { return }
+        guard let fullname = fullnameTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let profileImage = self.profileImage else { return }
+    
+        let credentials = AuthCredentials(email: email, fullname: fullname, password: password, profileImage: profileImage)
+                
+        AuthService.registerUser(withCredentials: credentials) { error in
+            if let error = error {
+                print("DEBUG: Error registring user, \(error)")
+                return
+            }
+            
+            print("Successful user registration")
+        }
     }
     
     @objc func handleShowLogin() {
@@ -110,7 +126,7 @@ class RegistrationController: UIViewController {
         selectPhotoButton.setDimensions(height: 275, width: 275)
         selectPhotoButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 8)
         
-        let stack = UIStackView(arrangedSubviews: [emailTextField, fullNameTextField, passwordTextField, authButton])
+        let stack = UIStackView(arrangedSubviews: [emailTextField, fullnameTextField, passwordTextField, authButton])
         stack.axis = .vertical
         stack.spacing = 12
         view.addSubview(stack)
@@ -133,7 +149,7 @@ class RegistrationController: UIViewController {
     func configureTextFieldObservers() {
         emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-        fullNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        fullnameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
     
 }
@@ -145,6 +161,7 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         let image = info[.originalImage] as? UIImage
+        profileImage = image
         selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         selectPhotoButton.layer.borderColor = UIColor(white: 1, alpha: 0.7).cgColor
         selectPhotoButton.layer.borderWidth = 3
