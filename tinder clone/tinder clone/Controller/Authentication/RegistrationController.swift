@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegistrationController: UIViewController {
     
@@ -96,7 +97,7 @@ class RegistrationController: UIViewController {
                 return
             }
             
-            print("Successful user registration")
+            self.dismiss(animated: true, completion: nil)
         }
     }
     

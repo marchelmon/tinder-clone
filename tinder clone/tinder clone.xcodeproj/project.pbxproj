@@ -14,6 +14,7 @@
 		3C5A88D425CFD5B9002A8AC5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C5A88D325CFD5B9002A8AC5 /* GoogleService-Info.plist */; };
 		3C5A88F025CFDB53002A8AC5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A88EF25CFDB53002A8AC5 /* AuthService.swift */; };
 		3C5A88F325CFDB5D002A8AC5 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A88F225CFDB5D002A8AC5 /* Service.swift */; };
+		3C5A88F625D024A4002A8AC5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A88F525D024A4002A8AC5 /* Constants.swift */; };
 		3C6D591A25CBEBAF00CA7CCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D591925CBEBAF00CA7CCA /* AppDelegate.swift */; };
 		3C6D591C25CBEBAF00CA7CCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D591B25CBEBAF00CA7CCA /* SceneDelegate.swift */; };
 		3C6D592125CBEBAF00CA7CCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6D591F25CBEBAF00CA7CCA /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 		3C5A88D325CFD5B9002A8AC5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C5A88EF25CFDB53002A8AC5 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		3C5A88F225CFDB5D002A8AC5 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		3C5A88F525D024A4002A8AC5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3C6D591625CBEBAF00CA7CCA /* tinder clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tinder clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6D591925CBEBAF00CA7CCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C6D591B25CBEBAF00CA7CCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				3C6D593925CBEFF700CA7CCA /* Extensions.swift */,
 				3C5A88C725CD7E68002A8AC5 /* CustomTextField.swift */,
 				3C5A88CA25CD8446002A8AC5 /* AuthButton.swift */,
+				3C5A88F525D024A4002A8AC5 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				3C6D594925CC615000CA7CCA /* CardViewModel.swift in Sources */,
 				3C6D594D25CD60BB00CA7CCA /* LoginController.swift in Sources */,
 				3C5A88F025CFDB53002A8AC5 /* AuthService.swift in Sources */,
+				3C5A88F625D024A4002A8AC5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

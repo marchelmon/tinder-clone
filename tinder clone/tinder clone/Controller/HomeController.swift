@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeController: UIViewController {
     
@@ -28,9 +29,40 @@ class HomeController: UIViewController {
         
         configureUI()
         configureCards()
+        checkIfUserIsLoggedIn()
+        fetchUser()
+        
+        //logout()
+        
     }
     
-    //MARK: - Helper functions
+    //MARK: - API
+    
+    func fetchUser() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Service.fetchUser(withUid: uid) { user in
+            
+        }
+    }
+    
+    func checkIfUserIsLoggedIn() {
+        if Auth.auth().currentUser == nil {
+            presentLoginController()
+        } else {
+            print("LOGGED IN")
+        }
+    }
+    
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            presentLoginController()
+        } catch {
+            print("Failed to log user out")
+        }
+    }
+    
+    //MARK: - Helpers
     
     func configureUI() {
         view.backgroundColor = .white
@@ -61,6 +93,15 @@ class HomeController: UIViewController {
         
         cardView1.fillSuperview()
         cardView2.fillSuperview()
+    }
+    
+    func presentLoginController() {
+        DispatchQueue.main.async {
+            let controller = LoginController()
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
+        }
     }
     
 }

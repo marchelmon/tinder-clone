@@ -28,4 +28,11 @@ struct Service {
         }
     }
     
+    static func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
+        COLLECTION_USERS.document(uid).getDocument { (snapshot, error) in
+            
+            print("DEBUG: SNAPSHOT: \(snapshot?.data())")
+        }
+    }
+    
 }
