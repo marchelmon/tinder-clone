@@ -12,11 +12,11 @@ struct CardViewModel {
     let user: User
     let userInfoText: NSAttributedString
     private var imageIndex = 0
-    var imageToShow: UIImage?
+    var imageUrl: URL?
     
     init(user: User) {
         self.user = user
-        imageToShow = user.images.first ?? #imageLiteral(resourceName: "ic_person_outline_white_2x")
+        //imageToShow = user.images.first ?? #imageLiteral(resourceName: "ic_person_outline_white_2x")
         
         let attributedText = NSMutableAttributedString(
             string: user.name,
@@ -36,18 +36,20 @@ struct CardViewModel {
             )
         )
         self.userInfoText = attributedText
+        
+        self.imageUrl = URL(string: user.profileImageUrl)
     }
     
     mutating func showNextPhoto() {
-        guard imageIndex + 1 != user.images.count else { return }
-        imageIndex += 1
-        self.imageToShow = user.images[imageIndex]
+//        guard imageIndex + 1 != user.images.count else { return }
+//        imageIndex += 1
+//        self.imageToShow = user.images[imageIndex]
     }
     
     mutating func showPreviousPhoto() {
-        guard imageIndex != 0 else { return }
-        imageIndex -= 1
-        self.imageToShow = user.images[imageIndex]
+//        guard imageIndex != 0 else { return }
+//        imageIndex -= 1
+//        self.imageToShow = user.images[imageIndex]
     }
     
 }

@@ -15,6 +15,8 @@
 		3C5A88F025CFDB53002A8AC5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A88EF25CFDB53002A8AC5 /* AuthService.swift */; };
 		3C5A88F325CFDB5D002A8AC5 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A88F225CFDB5D002A8AC5 /* Service.swift */; };
 		3C5A88F625D024A4002A8AC5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A88F525D024A4002A8AC5 /* Constants.swift */; };
+		3C5A892925D14721002A8AC5 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A892825D14721002A8AC5 /* SettingsController.swift */; };
+		3C5A892C25D150C5002A8AC5 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A892B25D150C5002A8AC5 /* SettingsHeader.swift */; };
 		3C6D591A25CBEBAF00CA7CCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D591925CBEBAF00CA7CCA /* AppDelegate.swift */; };
 		3C6D591C25CBEBAF00CA7CCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D591B25CBEBAF00CA7CCA /* SceneDelegate.swift */; };
 		3C6D592125CBEBAF00CA7CCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6D591F25CBEBAF00CA7CCA /* Main.storyboard */; };
@@ -42,6 +44,8 @@
 		3C5A88EF25CFDB53002A8AC5 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		3C5A88F225CFDB5D002A8AC5 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		3C5A88F525D024A4002A8AC5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3C5A892825D14721002A8AC5 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		3C5A892B25D150C5002A8AC5 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
 		3C6D591625CBEBAF00CA7CCA /* tinder clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tinder clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6D591925CBEBAF00CA7CCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C6D591B25CBEBAF00CA7CCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 			children = (
 				3C6D594B25CD60A400CA7CCA /* Authentication */,
 				3C6D593625CBECC200CA7CCA /* HomeController.swift */,
+				3C5A892825D14721002A8AC5 /* SettingsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 				3C6D593C25CBF06400CA7CCA /* HomeNavigationStackView.swift */,
 				3C6D593F25CBF96B00CA7CCA /* BottomControlsStackView.swift */,
 				3C6D594225CC01A200CA7CCA /* CardView.swift */,
+				3C5A892B25D150C5002A8AC5 /* SettingsHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,6 +321,7 @@
 				3C6D594025CBF96B00CA7CCA /* BottomControlsStackView.swift in Sources */,
 				3C6D591A25CBEBAF00CA7CCA /* AppDelegate.swift in Sources */,
 				3C6D591C25CBEBAF00CA7CCA /* SceneDelegate.swift in Sources */,
+				3C5A892C25D150C5002A8AC5 /* SettingsHeader.swift in Sources */,
 				3C6D594625CC602100CA7CCA /* User.swift in Sources */,
 				3C5A88CE25CEC385002A8AC5 /* LoginViewModel.swift in Sources */,
 				3C6D593D25CBF06400CA7CCA /* HomeNavigationStackView.swift in Sources */,
@@ -325,6 +332,7 @@
 				3C5A88C825CD7E68002A8AC5 /* CustomTextField.swift in Sources */,
 				3C6D593A25CBEFF700CA7CCA /* Extensions.swift in Sources */,
 				3C6D594925CC615000CA7CCA /* CardViewModel.swift in Sources */,
+				3C5A892925D14721002A8AC5 /* SettingsController.swift in Sources */,
 				3C6D594D25CD60BB00CA7CCA /* LoginController.swift in Sources */,
 				3C5A88F025CFDB53002A8AC5 /* AuthService.swift in Sources */,
 				3C5A88F625D024A4002A8AC5 /* Constants.swift in Sources */,

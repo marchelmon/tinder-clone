@@ -14,6 +14,10 @@ class HomeController: UIViewController {
     private let topStack = HomeNavigationStackView()
     private let bottomStack = BottomControlsStackView()
     
+    private var viewModels = [CardViewModel]() {
+        didSet { configureCards() }
+    }
+    
     private let deckView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemPink
@@ -28,12 +32,11 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
-        configureCards()
         checkIfUserIsLoggedIn()
-        fetchUser()
+        fetchUsers()
         
         //logout()
-        
+        topStack.delegate = self
     }
     
     //MARK: - API
@@ -41,7 +44,13 @@ class HomeController: UIViewController {
     func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUid: uid) { user in
-            
+            print("DeBUG: Executed comPLETION: \(user.email)")
+        }
+    }
+    
+    func fetchUsers() {
+        Service.fetchUsers { users in
+            self.viewModels = users.map({ CardViewModel(user: $0) })
         }
     }
     
@@ -80,19 +89,11 @@ class HomeController: UIViewController {
     }
     
     func configureCards() {
-        
-        let user1 = User(name: "Jane Doe", age: 20, images: [#imageLiteral(resourceName: "lady5c"), #imageLiteral(resourceName: "kelly1")])
-        let user2 = User(name: "Janey Doey ", age: 25, images: [#imageLiteral(resourceName: "jane2"), #imageLiteral(resourceName: "jane1")])
-        
-        let cardView1 = CardView(viewModel: CardViewModel(user: user1))
-        let cardView2 = CardView(viewModel: CardViewModel(user: user2))
-        
-        
-        deckView.addSubview(cardView1)
-        deckView.addSubview(cardView2)
-        
-        cardView1.fillSuperview()
-        cardView2.fillSuperview()
+        for viewModel in viewModels {
+            let cardView = CardView(viewModel: viewModel)
+            deckView.addSubview(cardView)
+            cardView.fillSuperview()
+        }
     }
     
     func presentLoginController() {
@@ -104,4 +105,18 @@ class HomeController: UIViewController {
         }
     }
     
+}
+
+extension HomeController: HomeNavigationStackViewDelegate {
+    
+    func showSettings() {
+        let controller = SettingsController()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
+    }
+    
+    func showMessages() {
+        
+    }
 }

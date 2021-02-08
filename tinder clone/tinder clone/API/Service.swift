@@ -30,8 +30,26 @@ struct Service {
     
     static func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
         COLLECTION_USERS.document(uid).getDocument { (snapshot, error) in
-            
-            print("DEBUG: SNAPSHOT: \(snapshot?.data())")
+            guard let dictionary = snapshot?.data() else { return }
+            let user = User(dictionary: dictionary)
+            completion(user)
+        }
+    }
+    
+    static func fetchUsers(completion: @escaping([User]) -> Void) {
+        var users = [User]()
+        
+        COLLECTION_USERS.getDocuments { (snapshot, error) in
+            snapshot?.documents.forEach({ document in
+                let dictionary = document.data()
+                let user = User(dictionary: dictionary)
+                users.append(user)
+                
+                if users.count == snapshot?.documents.count {
+                    print("DEBUG: Document count is \(snapshot?.documents.count)")
+                    completion(users)
+                }
+            })
         }
     }
     
