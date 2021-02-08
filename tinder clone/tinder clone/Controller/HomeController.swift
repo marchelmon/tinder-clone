@@ -11,6 +11,9 @@ import Firebase
 class HomeController: UIViewController {
     
     //MARK: - Properties
+    
+    private var user: User?
+    
     private let topStack = HomeNavigationStackView()
     private let bottomStack = BottomControlsStackView()
     
@@ -33,9 +36,9 @@ class HomeController: UIViewController {
         
         configureUI()
         checkIfUserIsLoggedIn()
+        fetchUser()
         fetchUsers()
         
-        //logout()
         topStack.delegate = self
     }
     
@@ -44,7 +47,7 @@ class HomeController: UIViewController {
     func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUid: uid) { user in
-            print("DeBUG: Executed comPLETION: \(user.email)")
+            self.user = user
         }
     }
     
@@ -110,7 +113,8 @@ class HomeController: UIViewController {
 extension HomeController: HomeNavigationStackViewDelegate {
     
     func showSettings() {
-        let controller = SettingsController()
+        guard let user = self.user else { return }
+        let controller = SettingsController(user: user)
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
