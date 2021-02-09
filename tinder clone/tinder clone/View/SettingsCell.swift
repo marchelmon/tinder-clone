@@ -7,16 +7,21 @@
 
 import UIKit
 
+protocol SettingsCellDelegate: class {
+    func settingsCell(_ cell: SettingsCell, wantsToUpdateUserWithValue value: String, for section: SettingsSection)
+}
+
 class SettingsCell: UITableViewCell {
     
     //MARK: - Properties
+    
+    weak var delegate: SettingsCellDelegate?
     
     var viewModel: SettingsViewModel! {
         didSet { configure() }
     }
     
     lazy var inputField: UITextField = {
-        
         let paddingView = UIView()
         paddingView.setDimensions(height: 50, width: 28)
         
@@ -25,6 +30,8 @@ class SettingsCell: UITableViewCell {
         tf.font = UIFont.systemFont(ofSize: 16)
         tf.leftView = paddingView
         tf.leftViewMode = .always
+        
+        tf.addTarget(self, action: #selector(handleUpdateUserInfo), for: .editingDidEnd)
         
         return tf
     } ()
@@ -46,7 +53,8 @@ class SettingsCell: UITableViewCell {
         minAgeLabel.text = "Min: 18"
         maxAgeLabel.text = "Max: 60"
         
-        addSubview(inputField)
+        self.contentView.addSubview(inputField)
+        
         inputField.fillSuperview()
         
         let minStack = UIStackView(arrangedSubviews: [minAgeLabel, minAgeSlider])
@@ -70,6 +78,11 @@ class SettingsCell: UITableViewCell {
     }
     
     //MARK: - Actions
+    
+    @objc func handleUpdateUserInfo(sender: UITextField) {
+        guard let value = sender.text else { return }
+        delegate?.settingsCell(self, wantsToUpdateUserWithValue: value, for: viewModel.section)
+    }
     
     @objc func handleAgeRangeChanged() {
         

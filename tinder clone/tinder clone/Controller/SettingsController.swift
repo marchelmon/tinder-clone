@@ -9,16 +9,21 @@ import UIKit
 
 private let resuseIdentifier = "SettingsCell"
 
+protocol SettingsControllerDelegate: class {
+    func settingsController(_ controller: SettingsController, wantsToUpdate user: User)
+}
+
 class SettingsController: UITableViewController {
     
     //MARK: - Properties
     
-    private let user: User
+    private var user: User
     
     private let headerView = SettingsHeader()
     private let imagePicker = UIImagePickerController()
     private var imageIndex = 0
     
+    weak var delegate: SettingsControllerDelegate?
     
     //MARK: - Lifecycle
     
@@ -46,7 +51,8 @@ class SettingsController: UITableViewController {
     }
     
     @objc func handleDone() {
-        print("TAPPED DONE")
+        view.endEditing(true)
+        delegate?.settingsController(self, wantsToUpdate: user)
     }
     
     //MARK: - Helpers
@@ -89,9 +95,10 @@ extension SettingsController {
         guard let section = SettingsSection(rawValue: indexPath.section) else { return cell }
         let viewModel = SettingsViewModel(user: user, section: section)
         cell.viewModel = viewModel
+        cell.delegate = self
         
         return cell
-    }
+    }    
 }
 
 //MARK: - UITableViewDelegate
@@ -132,6 +139,30 @@ extension SettingsController: UIImagePickerControllerDelegate, UINavigationContr
         let selectedImage = info[.originalImage] as? UIImage
         setHeaderImage(selectedImage)        
         dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+//MARK: - SettingsCellDelegate
+
+extension SettingsController: SettingsCellDelegate {
+    
+    func settingsCell(_ cell: SettingsCell, wantsToUpdateUserWithValue value: String, for section: SettingsSection) {
+        
+        switch section {
+        case .name:
+            user.name = value
+        case .profession:
+            user.profession = value
+        case .age:
+            user.age = Int(value) ?? user.age
+        case .bio:
+            user.bio = value
+        case .ageRange:
+            break
+        }
+     
+        print("DEBUG: USER IS \(user)")
     }
     
 }

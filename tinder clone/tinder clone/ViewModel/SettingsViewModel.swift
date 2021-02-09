@@ -29,7 +29,7 @@ enum SettingsSection: Int, CaseIterable {
 
 struct SettingsViewModel {
     private let user: User
-    private let section: SettingsSection
+    let section: SettingsSection
     
     let placeholderText: String
     var value: String?
@@ -49,7 +49,6 @@ struct SettingsViewModel {
         placeholderText = "Enter \(section.description.lowercased()).."
         
         switch section {
-        
         case .name:
             value = user.name
         case .profession:
