@@ -10,6 +10,7 @@ import UIKit
 struct CardViewModel {
 
     let user: User
+    let imageURLs: [String]
     let userInfoText: NSAttributedString
     private var imageIndex = 0
     var imageUrl: URL?
@@ -37,7 +38,9 @@ struct CardViewModel {
         )
         self.userInfoText = attributedText
         
-        self.imageUrl = URL(string: user.profileImageUrl)
+        //self.imageUrl = URL(string: user.imageURLs[0])
+        self.imageURLs = user.imageURLs
+        self.imageUrl = URL(string: self.imageURLs[0])
     }
     
     mutating func showNextPhoto() {

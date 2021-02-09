@@ -9,6 +9,7 @@ import UIKit
 
 protocol SettingsCellDelegate: class {
     func settingsCell(_ cell: SettingsCell, wantsToUpdateUserWithValue value: String, for section: SettingsSection)
+    func settingsCell(_ cell: SettingsCell, wantsToUpdateAgeRangeWith sender: UISlider)
 }
 
 class SettingsCell: UITableViewCell {
@@ -50,8 +51,7 @@ class SettingsCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        minAgeLabel.text = "Min: 18"
-        maxAgeLabel.text = "Max: 60"
+        selectionStyle = .none
         
         self.contentView.addSubview(inputField)
         
@@ -84,7 +84,14 @@ class SettingsCell: UITableViewCell {
         delegate?.settingsCell(self, wantsToUpdateUserWithValue: value, for: viewModel.section)
     }
     
-    @objc func handleAgeRangeChanged() {
+    @objc func handleAgeRangeChanged(sender: UISlider) {
+        if sender == minAgeSlider {
+            minAgeLabel.text = viewModel.minAgeLabelText(forValue: sender.value)
+        } else if sender == maxAgeSlider {
+            maxAgeLabel.text = viewModel.maxAgeLabelText(forValue: sender.value)
+        }
+        
+        delegate?.settingsCell(self, wantsToUpdateAgeRangeWith: sender)
         
     }
     
@@ -95,6 +102,12 @@ class SettingsCell: UITableViewCell {
         sliderStack.isHidden = viewModel.shouldHideSlider
         inputField.placeholder = viewModel.placeholderText
         inputField.text = viewModel.value
+        
+        minAgeLabel.text = viewModel.minAgeLabelText(forValue: viewModel.minAgeSliderValue)
+        maxAgeLabel.text = viewModel.maxAgeLabelText(forValue: viewModel.maxAgeSliderValue)
+        
+        minAgeSlider.setValue(viewModel.minAgeSliderValue, animated: true)
+        maxAgeSlider.setValue(viewModel.maxAgeSliderValue, animated: true)
     }
     
     func createAgeRangeSlider() -> UISlider  {

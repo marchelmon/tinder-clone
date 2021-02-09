@@ -19,7 +19,7 @@ class SettingsController: UITableViewController {
     
     private var user: User
     
-    private let headerView = SettingsHeader()
+    private lazy var headerView = SettingsHeader(user: user)
     private let imagePicker = UIImagePickerController()
     private var imageIndex = 0
     
@@ -38,7 +38,7 @@ class SettingsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         configureUI()
         headerView.delegate = self
         imagePicker.delegate = self
@@ -147,6 +147,16 @@ extension SettingsController: UIImagePickerControllerDelegate, UINavigationContr
 
 extension SettingsController: SettingsCellDelegate {
     
+    func settingsCell(_ cell: SettingsCell, wantsToUpdateAgeRangeWith sender: UISlider) {
+        
+        if sender == cell.minAgeSlider {
+            user.minSeekingAge = Int(sender.value)
+        } else if sender == cell.maxAgeSlider {
+            user.maxSeekingAge = Int(sender.value)
+        }
+        
+    }
+    
     func settingsCell(_ cell: SettingsCell, wantsToUpdateUserWithValue value: String, for section: SettingsSection) {
         
         switch section {
@@ -161,8 +171,6 @@ extension SettingsController: SettingsCellDelegate {
         case .ageRange:
             break
         }
-     
-        print("DEBUG: USER IS \(user)")
     }
     
 }

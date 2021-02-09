@@ -30,7 +30,7 @@ struct Service {
     
     static func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
         COLLECTION_USERS.document(uid).getDocument { (snapshot, error) in
-            guard let dictionary = snapshot?.data() else { return }
+            let dictionary = snapshot?.data() ?? ["age": 18]
             let user = User(dictionary: dictionary)
             completion(user)
         }
@@ -46,7 +46,6 @@ struct Service {
                 users.append(user)
                 
                 if users.count == snapshot?.documents.count {
-                    print("DEBUG: Document count is \(snapshot?.documents.count)")
                     completion(users)
                 }
             })

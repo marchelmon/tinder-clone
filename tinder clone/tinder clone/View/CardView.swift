@@ -55,6 +55,8 @@ class CardView: UIView {
         configureGradientLayer()
         
         imageView.sd_setImage(with: viewModel.imageUrl)
+        
+        imageView.sd_setImage(with: viewModel.imageUrl)
         addSubview(imageView)
         imageView.fillSuperview()
                 

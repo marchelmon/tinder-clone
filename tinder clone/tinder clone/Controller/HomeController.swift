@@ -37,8 +37,7 @@ class HomeController: UIViewController {
         configureUI()
         checkIfUserIsLoggedIn()
         fetchUser()
-        fetchUsers()
-        
+        fetchUsers()        
         topStack.delegate = self
     }
     
