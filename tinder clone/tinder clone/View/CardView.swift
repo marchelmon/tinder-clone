@@ -21,6 +21,8 @@ protocol CardViewDelegate: class {
 class CardView: UIView {
     
     //MARK: - Properties
+    
+    weak var delegate: CardViewDelegate?
 
     private let gradientLayer = CAGradientLayer()
     private let barStackView = UIStackView()
@@ -60,7 +62,6 @@ class CardView: UIView {
         
         imageView.sd_setImage(with: viewModel.imageUrl)
         
-        imageView.sd_setImage(with: viewModel.imageUrl)
         addSubview(imageView)
         imageView.fillSuperview()
 
@@ -88,7 +89,7 @@ class CardView: UIView {
     //MARK: - Actions
     
     @objc func handleShowProfile() {
-        
+        delegate?.cardView(self, wantsToShowProfileFor: viewModel.user)
     }
     
     @objc func handlePanGesture(sender: UIPanGestureRecognizer) {

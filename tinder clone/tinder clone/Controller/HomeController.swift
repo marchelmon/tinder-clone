@@ -93,6 +93,7 @@ class HomeController: UIViewController {
     func configureCards() {
         for viewModel in viewModels {
             let cardView = CardView(viewModel: viewModel)
+            cardView.delegate = self
             deckView.addSubview(cardView)
             cardView.fillSuperview()
         }
@@ -141,4 +142,14 @@ extension HomeController: SettingsControllerDelegate {
         logout()
     }
     
+}
+
+//MARK: - CardViewDelegate
+
+extension HomeController: CardViewDelegate {
+    func cardView(_ view: CardView, wantsToShowProfileFor user: User) {
+        let controller = ProfileController(user: user)
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true, completion: nil)
+    }
 }
