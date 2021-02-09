@@ -14,11 +14,16 @@ enum SwipeDirection: Int {
     case right = 1
 }
 
+protocol CardViewDelegate: class {
+    func cardView(_ view: CardView, wantsToShowProfileFor user: User)
+}
+
 class CardView: UIView {
     
     //MARK: - Properties
 
     private let gradientLayer = CAGradientLayer()
+    private let barStackView = UIStackView()
     
     private var viewModel: CardViewModel
     
@@ -38,6 +43,7 @@ class CardView: UIView {
     private lazy var infoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "info_icon").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleShowProfile), for: .touchUpInside)
         return button
     }()
     
@@ -47,19 +53,20 @@ class CardView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
                 
-        backgroundColor = .systemPurple
         layer.cornerRadius = 10
         clipsToBounds = true
         
         configureGestureRecognizers()
-        configureGradientLayer()
         
         imageView.sd_setImage(with: viewModel.imageUrl)
         
         imageView.sd_setImage(with: viewModel.imageUrl)
         addSubview(imageView)
         imageView.fillSuperview()
-                
+
+        configureBarStackView()
+        configureGradientLayer()
+
         addSubview(infoLabel)
         infoLabel.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
         
@@ -79,6 +86,11 @@ class CardView: UIView {
     }
     
     //MARK: - Actions
+    
+    @objc func handleShowProfile() {
+        
+    }
+    
     @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
@@ -100,7 +112,10 @@ class CardView: UIView {
         } else {
             viewModel.showPreviousPhoto()
         }
-       // imageView.image = viewModel.imageToShow
+
+        imageView.sd_setImage(with: viewModel.imageUrl)
+        barStackView.arrangedSubviews.forEach { $0.backgroundColor = .barDeselectedColor }
+        barStackView.arrangedSubviews[viewModel.index].backgroundColor = .white
     }
     
     //MARK: - Helpers
@@ -114,19 +129,6 @@ class CardView: UIView {
         self.transform = rotationalTransform.translatedBy(x: translation.x, y: translation.y)
     }
     
-    func configureGradientLayer() {
-        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        gradientLayer.locations = [0.5, 1.1]
-        layer.addSublayer(gradientLayer)
-    }
-    
-    func configureGestureRecognizers() {
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
-        addGestureRecognizer(pan)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleChangePhoto))
-        addGestureRecognizer(tap)
-    }
     
     func resetCardPosition(sender: UIPanGestureRecognizer) {
         let direction: SwipeDirection = sender.translation(in: nil).x > 100 ? .right : .left
@@ -146,7 +148,37 @@ class CardView: UIView {
                 self.removeFromSuperview()
             }
         }
-
+    }
+    
+    func configureBarStackView() {
+        (0..<viewModel.imageURLs.count).forEach { _ in
+            let barView = UIView()
+            barView.backgroundColor = .barDeselectedColor
+            barStackView.addArrangedSubview(barView)
+        }
+        
+        barStackView.arrangedSubviews.first?.backgroundColor = .white
+        
+        addSubview(barStackView)
+        barStackView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingRight: 8, height: 4)
+        
+        barStackView.spacing = 4
+        barStackView.distribution = .fillEqually
+        
+    }
+    
+    func configureGradientLayer() {
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradientLayer.locations = [0.5, 1.1]
+        layer.addSublayer(gradientLayer)
+    }
+    
+    func configureGestureRecognizers() {
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        addGestureRecognizer(pan)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleChangePhoto))
+        addGestureRecognizer(tap)
     }
     
 }
