@@ -38,6 +38,7 @@
 		3CB29FA125D2ED5D00A85738 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB29FA025D2ED5D00A85738 /* ProfileCell.swift */; };
 		3CB29FA525D2FAFD00A85738 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB29FA425D2FAFD00A85738 /* ProfileViewModel.swift */; };
 		3CB29FA825D30A3000A85738 /* SegmentedBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB29FA725D30A3000A85738 /* SegmentedBarView.swift */; };
+		3CB29FAB25D3F88900A85738 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB29FAA25D3F88900A85738 /* MatchView.swift */; };
 		C74B368A7AA315B5AED2EC6A /* Pods_tinder_clone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B28D7224FE70E2D39A22B2 /* Pods_tinder_clone.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		3CB29FA025D2ED5D00A85738 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		3CB29FA425D2FAFD00A85738 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3CB29FA725D30A3000A85738 /* SegmentedBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedBarView.swift; sourceTree = "<group>"; };
+		3CB29FAA25D3F88900A85738 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
 		759939650EEE936D932DE32E /* Pods-tinder clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinder clone.debug.xcconfig"; path = "Target Support Files/Pods-tinder clone/Pods-tinder clone.debug.xcconfig"; sourceTree = "<group>"; };
 		79427A44BF150D607B3FF8FD /* Pods-tinder clone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinder clone.release.xcconfig"; path = "Target Support Files/Pods-tinder clone/Pods-tinder clone.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +181,7 @@
 				3C6D594225CC01A200CA7CCA /* CardView.swift */,
 				3CB29FA025D2ED5D00A85738 /* ProfileCell.swift */,
 				3CB29FA725D30A3000A85738 /* SegmentedBarView.swift */,
+				3CB29FAA25D3F88900A85738 /* MatchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				3CB29F9925D2CEFD00A85738 /* SettingsFooter.swift in Sources */,
 				3C5A892F25D1763E002A8AC5 /* SettingsCell.swift in Sources */,
 				3C6D593A25CBEFF700CA7CCA /* Extensions.swift in Sources */,
+				3CB29FAB25D3F88900A85738 /* MatchView.swift in Sources */,
 				3C6D594925CC615000CA7CCA /* CardViewModel.swift in Sources */,
 				3C5A892925D14721002A8AC5 /* SettingsController.swift in Sources */,
 				3CB29FA125D2ED5D00A85738 /* ProfileCell.swift in Sources */,

@@ -77,6 +77,17 @@ class HomeController: UIViewController {
         }
     }
     
+    func saveSwipeAndCheckForMatch(forUser user: User, didLike: Bool) {
+        Service.saveSwipe(forUser: user, isLike: didLike) { error in
+            self.topCardView = self.cardViews.last
+            
+            guard didLike == true else { return }
+            Service.checkIfMatchExists(forUser: user) { didMatch in
+                self.presentMatchView(forUser: user)
+            }
+        }
+    }
+    
     //MARK: - Helpers
     
     func configureUI() {
@@ -114,6 +125,13 @@ class HomeController: UIViewController {
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
         }
+    }
+    
+    func presentMatchView(forUser user: User) {
+        guard let currentUser = self.user else { return }
+        let matchView = MatchView(currentUser: currentUser, matchedUser: user)
+        view.addSubview(matchView)
+        matchView.fillSuperview()
     }
     
     func performSwipeAnimation(shouldLike: Bool) {
@@ -174,7 +192,7 @@ extension HomeController: CardViewDelegate {
         self.cardViews.removeAll(where: { view == $0 })
         
         guard let user = topCardView?.viewModel.user else { return }
-        Service.saveSwipe(forUser: user, isLike: didLikeUser)
+        self.saveSwipeAndCheckForMatch(forUser: user, didLike: didLikeUser)
         
         self.topCardView = cardViews.last
     }
@@ -194,14 +212,14 @@ extension HomeController: BottomControlsStackViewDelegate {
         guard let topCard = topCardView else { return }
         
         performSwipeAnimation(shouldLike: true)
-        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: true)
+        saveSwipeAndCheckForMatch(forUser: topCard.viewModel.user, didLike: true)
     }
     
     func handleDislike() {
         guard let topCard = topCardView else { return }
         
         performSwipeAnimation(shouldLike: false)
-        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: false)
+        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: false, completion: nil)
     }
     
     func handleRefresh() {
@@ -215,14 +233,15 @@ extension HomeController: ProfileControllerDelegate {
     func profileController(_ controller: ProfileController, didLikeUser user: User) {
         controller.dismiss(animated: true) {
             self.performSwipeAnimation(shouldLike: true)
-            Service.saveSwipe(forUser: user, isLike: true)
+            self.saveSwipeAndCheckForMatch(forUser: user, didLike: true)
         }
     }
     
     func profileController(_ controller: ProfileController, didDislikeUser user: User) {
         controller.dismiss(animated: true) {
             self.performSwipeAnimation(shouldLike: false)
-            Service.saveSwipe(forUser: user, isLike: false)
+            Service.saveSwipe(forUser: user, isLike: false, completion: nil)
+            
         }
     }
 }
