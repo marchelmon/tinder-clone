@@ -93,9 +93,7 @@ struct Service {
                 let userCard = User(dictionary: dictionary)
         
                 guard userCard.uid != Auth.auth().currentUser?.uid else { return }
-                
-                print(document.data())
-
+        
                 users.append(userCard)
                 
                 if users.count == snapshot.documents.count - subtractCount {
