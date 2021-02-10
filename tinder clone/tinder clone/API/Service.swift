@@ -28,6 +28,18 @@ struct Service {
         COLLECTION_USERS.document(user.uid).setData(data, completion: completion)
     }
     
+    static func saveSwipe(forUser user: User, isLike: Bool) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        COLLECTION_SWIPES.document(uid).getDocument { (snapshot, error) in
+            let data = [user.uid: isLike]
+            if snapshot?.exists == true {
+                COLLECTION_SWIPES.document(uid).updateData(data)
+            } else {
+                COLLECTION_SWIPES.document(uid).setData(data)
+            }
+        }
+    }
+    
     static func uploadImage(image: UIImage, completion: @escaping(String) -> Void) {
         guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
         let fileName = NSUUID().uuidString
@@ -54,16 +66,30 @@ struct Service {
         }
     }
     
-    static func fetchUsers(completion: @escaping([User]) -> Void) {
+    static func fetchUsers(forCurrentUser user: User, completion: @escaping([User]) -> Void) {
         var users = [User]()
         
-        COLLECTION_USERS.getDocuments { (snapshot, error) in
-            snapshot?.documents.forEach({ document in
+        let query = COLLECTION_USERS
+            .whereField("age", isGreaterThanOrEqualTo: user.minSeekingAge)
+            .whereField("age", isLessThanOrEqualTo: user.maxSeekingAge)
+        
+        let subtractCount = (user.age < user.minSeekingAge || user.age > user.maxSeekingAge) ? 0 : 1
+        
+        query.getDocuments { (snapshot, error) in
+            guard let snapshot = snapshot else { return }
+            snapshot.documents.forEach({ document in
                 let dictionary = document.data()
-                let user = User(dictionary: dictionary)
-                users.append(user)
+                let userCard = User(dictionary: dictionary)
                 
-                if users.count == snapshot?.documents.count {
+                
+                
+                guard userCard.uid != Auth.auth().currentUser?.uid else { return }
+                
+                print(document.data())
+
+                users.append(userCard)
+                
+                if users.count == snapshot.documents.count - subtractCount {
                     completion(users)
                 }
             })
