@@ -84,6 +84,11 @@ class HomeController: UIViewController {
             guard didLike == true else { return }
             Service.checkIfMatchExists(forUser: user) { didMatch in
                 self.presentMatchView(forUser: user)
+                
+                if didMatch {
+                    guard let currentUser = self.user else { return }
+                    Service.uploadMatch(currentUser: currentUser, matchedUser: user)
+                }
             }
         }
     }
@@ -166,7 +171,11 @@ extension HomeController: HomeNavigationStackViewDelegate {
     }
     
     func showMessages() {
-        
+        guard let user = self.user else { return }
+        let controller = MessagesController(user: user)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
 }
 

@@ -11,6 +11,76 @@ import Firebase
 struct Service {
     
     
+    //MARK: - Fetching
+    
+    private static func fetchSwipes(completion: @escaping([String: Bool]) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        COLLECTION_SWIPES.document(uid).getDocument { (snapshot, error) in
+            guard let data = snapshot?.data() as? [String: Bool] else {
+                completion([String: Bool]())
+                return
+            }
+            completion(data)
+        }
+    }
+    
+    static func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
+        COLLECTION_USERS.document(uid).getDocument { (snapshot, error) in
+            let dictionary = snapshot?.data() ?? ["age": 18]
+            let user = User(dictionary: dictionary)
+            completion(user)
+        }
+    }
+    
+    static func fetchUsers(forCurrentUser user: User, completion: @escaping([User]) -> Void) {
+        var users = [User]()
+                
+        let query = COLLECTION_USERS
+            .whereField("age", isGreaterThanOrEqualTo: user.minSeekingAge)
+            .whereField("age", isLessThanOrEqualTo: user.maxSeekingAge)
+        
+        fetchSwipes { swipedUserIds in
+            
+            query.getDocuments { (snapshot, error) in
+                guard let snapshot = snapshot else { return }
+                snapshot.documents.forEach({ document in
+                    let dictionary = document.data()
+                    let user = User(dictionary: dictionary)
+            
+                    guard user.uid != Auth.auth().currentUser?.uid else { return }
+                    guard swipedUserIds[user.uid] == nil else { return }
+                    users.append(user)
+                })
+                completion(users)
+            }
+        }
+    }
+    
+    static func fetchMatches(completion: @escaping([Match]) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        COLLECTION_MATCHES_MESSAGES.document(uid).collection("matches").getDocuments { (snapshot, error) in
+            guard let data = snapshot else { return }
+            
+            let matches = data.documents.map({ Match(dictionary: $0.data()) })
+            completion(matches)
+            
+        }
+    }
+    
+    static func checkIfMatchExists(forUser user: User, completion: @escaping(Bool) -> Void) {
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        
+        COLLECTION_SWIPES.document(user.uid).getDocument { (snapshot, error) in
+            guard let data = snapshot?.data() else { return }
+            guard let didMatch = data[currentUid] as? Bool else { return }
+            completion(didMatch)
+        }
+    }
+    
+    //MARK: - Uploads
+    
     static func saveUserData(user: User, completion: @escaping(Error?) -> Void) {
      
         let data = [
@@ -58,49 +128,18 @@ struct Service {
         }
     }
     
-    static func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
-        COLLECTION_USERS.document(uid).getDocument { (snapshot, error) in
-            let dictionary = snapshot?.data() ?? ["age": 18]
-            let user = User(dictionary: dictionary)
-            completion(user)
-        }
+    static func uploadMatch(currentUser: User, matchedUser: User) {
+        guard let profileImageUrl = matchedUser.imageURLs.first else { return }
+        guard let currentUserProfileImageUrl = currentUser.imageURLs.first else { return }
+        
+        let matchedUserData = ["uid": matchedUser.uid, "name": matchedUser.name, "profileImageUrl": profileImageUrl]
+        
+        COLLECTION_MATCHES_MESSAGES.document(currentUser.uid).collection("matches").document(matchedUser.uid).setData(matchedUserData)
+        
+        let currentUserData = ["uid": currentUser.uid, "name": currentUser.name, "profileImageUrl": currentUserProfileImageUrl]
+        
+        COLLECTION_MATCHES_MESSAGES.document(matchedUser.uid).collection("matches").document(currentUser.uid).setData(currentUserData)
     }
     
-    static func checkIfMatchExists(forUser user: User, completion: @escaping(Bool) -> Void) {
-        guard let currentUid = Auth.auth().currentUser?.uid else { return }
-        
-        COLLECTION_SWIPES.document(user.uid).getDocument { (snapshot, error) in
-            guard let data = snapshot?.data() else { return }
-            guard let didMatch = data[currentUid] as? Bool else { return }
-            completion(didMatch)
-        }
-        
-    }
-    
-    static func fetchUsers(forCurrentUser user: User, completion: @escaping([User]) -> Void) {
-        var users = [User]()
-        
-        let query = COLLECTION_USERS
-            .whereField("age", isGreaterThanOrEqualTo: user.minSeekingAge)
-            .whereField("age", isLessThanOrEqualTo: user.maxSeekingAge)
-        
-        let subtractCount = (user.age < user.minSeekingAge || user.age > user.maxSeekingAge) ? 0 : 1
-        
-        query.getDocuments { (snapshot, error) in
-            guard let snapshot = snapshot else { return }
-            snapshot.documents.forEach({ document in
-                let dictionary = document.data()
-                let userCard = User(dictionary: dictionary)
-        
-                guard userCard.uid != Auth.auth().currentUser?.uid else { return }
-        
-                users.append(userCard)
-                
-                if users.count == snapshot.documents.count - subtractCount {
-                    completion(users)
-                }
-            })
-        }
-    }
     
 }
