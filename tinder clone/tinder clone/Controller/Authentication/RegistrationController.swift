@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Firebase
+import JGProgressHUD
 
 class RegistrationController: UIViewController {
     
@@ -31,7 +31,9 @@ class RegistrationController: UIViewController {
     private var profileImage: UIImage?
     
     private let authButton: AuthButton = {
-        let button = AuthButton(title: "Register ", type: .system)
+        let button = AuthButton(type: .system)
+        button.setTitle("Register", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
         button.addTarget(self, action: #selector(handleRegisterUser), for: .touchUpInside)
         return button
     }()
@@ -90,14 +92,18 @@ class RegistrationController: UIViewController {
         guard let password = passwordTextField.text else { return }
         guard let profileImage = self.profileImage else { return }
     
+        let hud = JGProgressHUD(style: .dark)
+        hud.show(in: view)
+        
         let credentials = AuthCredentials(email: email, fullname: fullname, password: password, profileImage: profileImage)
                 
         AuthService.registerUser(withCredentials: credentials) { error in
             if let error = error {
                 print("DEBUG: Error registring user, \(error)")
+                hud.dismiss()
                 return
             }
-            
+            hud.dismiss()
             self.delegate?.authenticationComplete()
         }
     }
